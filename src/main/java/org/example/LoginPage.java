@@ -37,9 +37,11 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
-    /*public String getFlashMessage() {
-        return driver.findElement(flashMessage).getText();
-    }*/
+    public void login(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+    }
 
     public String getFlashMessage() {
 

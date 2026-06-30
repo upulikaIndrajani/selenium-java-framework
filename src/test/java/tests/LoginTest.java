@@ -12,9 +12,8 @@ public class LoginTest extends BaseTest {
     public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.enterUsername("tomsmith");
-        loginPage.enterPassword("SuperSecretPassword!");
-        loginPage.clickLogin();
+        loginPage.login("tomsmith", "SuperSecretPassword!");
+        //loginPage.clickLogin();
 
         String actualMessage = loginPage.getFlashMessage();
         System.out.println(actualMessage);
@@ -29,10 +28,7 @@ public class LoginTest extends BaseTest {
 
             LoginPage loginPage = new LoginPage(driver);
 
-            loginPage.enterUsername("wrongUser");
-            loginPage.enterPassword("wrongPassword!");
-            loginPage.clickLogin();
-
+        loginPage.login("wrongUser", "wrongPassword!");
 
             String actualMessage = loginPage.getFlashMessage();
             System.out.println(actualMessage);
