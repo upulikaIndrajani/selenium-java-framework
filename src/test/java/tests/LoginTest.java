@@ -4,18 +4,18 @@ import org.example.LoginPage;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+
 public class LoginTest extends BaseTest {
 
 
     @Test
-    public void validLoginTest() throws InterruptedException {
+    public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.enterUsername("tomsmith");
         loginPage.enterPassword("SuperSecretPassword!");
         loginPage.clickLogin();
 
-        Thread.sleep(5000);
         String actualMessage = loginPage.getFlashMessage();
         System.out.println(actualMessage);
         String expectedMessage = "You logged into a secure area!";
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void invalidLoginTest() throws InterruptedException {
+    public void invalidLoginTest()  {
 
             LoginPage loginPage = new LoginPage(driver);
 
@@ -33,7 +33,6 @@ public class LoginTest extends BaseTest {
             loginPage.enterPassword("wrongPassword!");
             loginPage.clickLogin();
 
-            Thread.sleep(5000);
 
             String actualMessage = loginPage.getFlashMessage();
             System.out.println(actualMessage);
