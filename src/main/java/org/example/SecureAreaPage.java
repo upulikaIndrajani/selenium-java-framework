@@ -27,4 +27,10 @@ public class SecureAreaPage {
 
         return driver.findElement(flashMessage).getText();
     }
+
+    public LoginPage clickLogout() {
+        driver.findElement(logoutButton).click();
+
+        return new LoginPage(driver);
+    }
 }

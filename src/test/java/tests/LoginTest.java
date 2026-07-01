@@ -42,9 +42,25 @@ public class LoginTest extends BaseTest {
 
             Assert.assertTrue(actualMessage.contains(expectedMessage));
 
+    }
 
+    @Test
+    public void logoutTest() {
 
+        LoginPage loginPage = new LoginPage(driver);
 
+        SecureAreaPage secureAreaPage =
+                loginPage.login("tomsmith", "SuperSecretPassword!");
+
+        LoginPage returnedLoginPage =
+                secureAreaPage.clickLogout();
+
+        String actualMessage = returnedLoginPage.getFlashMessage();
+        System.out.println(actualMessage);
+
+        String expectedMessage = "You logged out of the secure area!";
+
+        Assert.assertTrue(actualMessage.contains(expectedMessage));
     }
 
 }

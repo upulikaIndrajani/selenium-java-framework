@@ -44,6 +44,10 @@ public class LoginPage {
         return new SecureAreaPage(driver);
     }
 
+    public String getFlashMessage() {
+        return driver.findElement(flashMessage).getText();
+    }
+
 
 
 }
