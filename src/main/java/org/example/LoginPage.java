@@ -14,7 +14,6 @@ public class LoginPage {
     private By usernameField = By.id("username");
     private By passwordField = By.id("password");
     private By loginButton = By.cssSelector("button[type='submit']");
-
     private By flashMessage = By.id("flash");
 
 
@@ -37,21 +36,14 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
-    public void login(String username, String password) {
+    public SecureAreaPage login(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLogin();
+
+        return new SecureAreaPage(driver);
     }
 
-    public String getFlashMessage() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(flashMessage)
-        );
-
-        return driver.findElement(flashMessage).getText();
-    }
 
 }

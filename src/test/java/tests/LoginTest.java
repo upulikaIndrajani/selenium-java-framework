@@ -3,6 +3,7 @@ package tests;
 import org.example.LoginPage;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.example.SecureAreaPage;
 
 
 public class LoginTest extends BaseTest {
@@ -12,10 +13,13 @@ public class LoginTest extends BaseTest {
     public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("tomsmith", "SuperSecretPassword!");
-        //loginPage.clickLogin();
+        //LoginPage loginPage = new LoginPage(driver);
 
-        String actualMessage = loginPage.getFlashMessage();
+        SecureAreaPage secureAreaPage =
+                loginPage.login("tomsmith", "SuperSecretPassword!");
+
+        String actualMessage =
+                secureAreaPage.getFlashMessage();
         System.out.println(actualMessage);
         String expectedMessage = "You logged into a secure area!";
 
@@ -28,9 +32,11 @@ public class LoginTest extends BaseTest {
 
             LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("wrongUser", "wrongPassword!");
+        SecureAreaPage secureAreaPage =
+                loginPage.login("wrongUser", "wrongPassword!");
 
-            String actualMessage = loginPage.getFlashMessage();
+
+        String actualMessage = secureAreaPage.getFlashMessage();
             System.out.println(actualMessage);
             String expectedMessage = "Your username is invalid!";
 
