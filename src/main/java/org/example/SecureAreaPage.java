@@ -5,25 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import utils.WaitUtils;
 
-public class SecureAreaPage {
+public class SecureAreaPage extends BasePage{
 
-    private WebDriver driver;
+
 
     // Locators
     private By flashMessage = By.id("flash");
     private By logoutButton = By.xpath("//a[@href='/logout']");
 
     public SecureAreaPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
     public String getFlashMessage() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(flashMessage)
-        );
+        WaitUtils.waitForVisibility(driver, flashMessage);
 
         return driver.findElement(flashMessage).getText();
     }
